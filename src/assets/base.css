@@ -1,0 +1,49 @@
+/* bckground - #f3f3f3
+text - 1a1a1a
+*/
+/* Reset default margin and padding to ensure consistent rendering across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Add this to your globals.css or page.module.css */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  background: #f3f3f3;
+  color: 1a1a1a;
+}
+
+/* For webkit browsers (Chrome, Safari, Edge) */
+html {
+  scroll-snap-type: y proximity; /* Optional: adds snap points */
+}
+
+/* Custom smooth scrolling with CSS transforms */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Alternative approach using CSS scroll-timeline (newer browsers) */
+@supports (scroll-timeline: works) {
+  html {
+    scroll-timeline: --page-scroll block;
+    animation: smooth-scroll linear both;
+    animation-timeline: --page-scroll;
+  }
+}
+
+@keyframes smooth-scroll {
+  to {
+    scroll-behavior: smooth;
+  }
+}
+
+/* For better performance on older devices */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

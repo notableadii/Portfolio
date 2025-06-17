@@ -1,0 +1,26 @@
+/* .logo {
+  font-family: "Brag", sans-serif;
+  font-size: 6em;
+  margin-left: 3em;
+  margin-bottom: -1.5em; */
+/* } */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1em; /* spacing between asterisk and text */
+}
+
+.logo {
+  font-family: "Brag", sans-serif;
+  font-size: 6em;
+  display: inline-block;
+  transform-origin: center center;
+  margin-left: 15vw;
+}
+
+.logo-text {
+  font-size: 2em;
+  margin-left: 60vw;
+  margin-top: -1.4em;
+  font-family: "Bento", sans-serif;
+}
