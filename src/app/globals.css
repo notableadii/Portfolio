@@ -1,42 +1,140 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Let Lenis handle scrolling */
+html {
+  scroll-padding-top: 0;
+}
+
+* {
+  scroll-behavior: auto;
+}
+
+@supports (scroll-timeline: works) {
+  html {
+    scroll-timeline: none;
+    animation: none;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Font face declarations */
+/* @font-face {
+  font-family: "ArticulatCFNormal";
+  src: url("./fonts/ArticulatCFNormal.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CallingCodeRegular";
+  src: url("./fonts/CallingCodeRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+html {
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "ArticulatCFNormal", Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f1f1f1;
+  color: #1a1a1a;
+  min-height: calc(100vh - 16px);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 1rem;
+  margin: 0;
+  /* background-image: radial-gradient(
+      ellipse 400px 300px at 75% 80%,
+      #62e19f 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 350px 400px at 85% 70%,
+      #62e19f 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 300px 250px at 80% 95%,
+      #62e19f 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 250px 350px at 70% 85%,
+      #62e19f 0%,
+      transparent 100%
+    );
+  background-attachment: fixed; */
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #000, #020202);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #000, #020202);
+}
+
+/* Selection colors */
+::selection {
+  background: #1a1a1a;
+  color: #f1f1f1;
+}
+
+::-moz-selection {
+  background: #1a1a1a;
+  color: #f1f1f1;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Lenis optimization styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

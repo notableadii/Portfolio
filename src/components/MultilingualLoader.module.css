@@ -1,0 +1,77 @@
+/* MultilingualLoader styles start */
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #010101;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.loaderContainer.fadeOut {
+  opacity: 10;
+  transform: scale(0.95);
+}
+
+.loaderContent {
+  text-align: center;
+  position: relative;
+}
+
+.greeting {
+  font-size: 4rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.greeting.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: greetingPulse 0.5s ease-in-out;
+}
+
+.greeting.completed {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8) translateY(-20px);
+}
+
+@keyframes greetingPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .greeting {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .greeting {
+    font-size: 2.5rem;
+  }
+}
+/* MultilingualLoader styles end */
