@@ -3,11 +3,60 @@
 }
 
 .h1 {
-  font-size: 5em;
-  margin-top: 5em;
+  font-size: 2em;
+  margin-top: 10em;
 }
 
 .subtext {
-  font-size: 2em;
+  font-size: 4em;
   /* max-width: 500px; */
+}
+
+.destext {
+  font-size: 2em;
+  max-width: 850px;
+}
+
+.aboutheader {
+  margin-top: 6em;
+  font-size: 5em;
+}
+
+.subabout {
+  font-size: 2em;
+}
+.text1 {
+  margin-top: 10px;
+}
+
+.text2 {
+  margin-top: 10px;
+}
+
+/* Split text animation styles */
+.split {
+  opacity: 0; /* Start hidden, will be set to 1 by GSAP */
+  will-change: transform;
+}
+
+.split * {
+  will-change: transform;
+}
+
+/* Line masking for the reveal effect */
+:global(.line),
+:global(.line-subtext) {
+  overflow: hidden;
+  display: block;
+}
+
+/* Optional: Add some spacing between lines for better visual effect */
+:global(.line) {
+  line-height: 1.1;
+  margin-bottom: 0.1em;
+}
+
+:global(.line-subtext) {
+  line-height: 1.4;
+  margin-bottom: 0.05em;
 }
