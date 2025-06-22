@@ -1,3 +1,8 @@
+/* .aboutheader {
+  margin-top: 8em;
+  font-size: 3em;
+  } */
+
 .container {
   margin-left: 4em;
 }
@@ -20,6 +25,34 @@
 .aboutheader {
   margin-top: 8em;
   font-size: 3em;
+}
+
+.aboutheader::after {
+  /* bottom: 8px; */
+}
+
+/* New header styles for different sections */
+.featuredHeader {
+  margin-top: 6em;
+  font-size: 2.5em;
+  /* color: #2d3748; */
+  /* font-weight: 600; */
+  margin-bottom: 5em;
+}
+
+.skillsHeader {
+  margin-top: em;
+  font-size: 2.2em;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.contactHeader {
+  margin-top: 7em;
+  font-size: 2.8em;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-bottom: 3em;
 }
 
 .subabout {

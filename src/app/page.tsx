@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import MultilingualLoader from "../components/MultilingualLoader";
+import AnimatedTextWithUnderline from "../components/AnimatedTextWithUnderline";
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -14,7 +15,6 @@ export default function Home() {
   const subtextRef = useRef<HTMLDivElement>(null);
   const newtextRef = useRef<HTMLDivElement>(null);
   const destextRef = useRef<HTMLDivElement>(null);
-  const aboutheaderRef = useRef<HTMLDivElement>(null);
   const fixRef = useRef<HTMLDivElement>(null);
   const text2Ref = useRef<HTMLDivElement>(null);
 
@@ -33,7 +33,6 @@ export default function Home() {
     const timer = setTimeout(() => {
       // Animation for h1
       if (h1Ref.current) {
-        // Make sure element is visible first
         gsap.set(h1Ref.current, { opacity: 1 });
 
         const splitH1 = new SplitText(h1Ref.current, {
@@ -97,40 +96,14 @@ export default function Home() {
         animations.push(destextAnim);
       }
 
-      // About header animation with scroll trigger
-      if (aboutheaderRef.current) {
-        console.log("Setting up aboutheader animation");
-
-        const aboutTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: aboutheaderRef.current,
-            start: "top 90%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-            onEnter: () => console.log("About header entered"),
-            onLeave: () => console.log("About header left"),
-          },
-        });
-
-        aboutTl.fromTo(
-          aboutheaderRef.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }
-        );
-      }
-
       // Fixed animation for first text paragraph
       if (fixRef.current) {
-        console.log("Setting up fixRef animation");
-
         const text1Tl = gsap.timeline({
           scrollTrigger: {
             trigger: fixRef.current,
             start: "top 90%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
-            onEnter: () => console.log("Text1 entered"),
-            onLeave: () => console.log("Text1 left"),
           },
         });
 
@@ -143,16 +116,12 @@ export default function Home() {
 
       // Animation for second text paragraph
       if (text2Ref.current) {
-        console.log("Setting up text2Ref animation");
-
         const text2Tl = gsap.timeline({
           scrollTrigger: {
             trigger: text2Ref.current,
             start: "top 90%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
-            onEnter: () => console.log("Text2 entered"),
-            onLeave: () => console.log("Text2 left"),
           },
         });
 
@@ -175,29 +144,19 @@ export default function Home() {
     };
   }, []);
 
-  // Alternative: Make sure text is visible on component mount
+  // Fallback visibility
   useEffect(() => {
-    // Fallback to ensure text is always visible
     const fallbackTimer = setTimeout(() => {
       if (fixRef.current && gsap.getProperty(fixRef.current, "opacity") === 0) {
-        console.log("Fallback: Making text1 visible");
         gsap.set(fixRef.current, { opacity: 1 });
       }
       if (
         text2Ref.current &&
         gsap.getProperty(text2Ref.current, "opacity") === 0
       ) {
-        console.log("Fallback: Making text2 visible");
         gsap.set(text2Ref.current, { opacity: 1 });
       }
-      if (
-        aboutheaderRef.current &&
-        gsap.getProperty(aboutheaderRef.current, "opacity") === 0
-      ) {
-        console.log("Fallback: Making about header visible");
-        gsap.set(aboutheaderRef.current, { opacity: 1 });
-      }
-    }, 2000); // 2 second fallback
+    }, 2000);
 
     return () => clearTimeout(fallbackTimer);
   }, []);
@@ -217,13 +176,18 @@ export default function Home() {
           Focused on growth, efficiency, and tech-powered execution.
         </div>
       </div>
+
       <div className={styles.container}>
-        <div
-          className={`${styles.aboutheader} ${styles.split}`}
-          ref={aboutheaderRef}
+        {/* Using the reusable component for "about me" */}
+        <AnimatedTextWithUnderline
+          className={styles.aboutheader}
+          underlineColor="#1a1a1a"
+          underlineHeight={4}
+          direction="right"
         >
           about me
-        </div>
+        </AnimatedTextWithUnderline>
+
         <div className={styles.subabout}>
           <div className={styles.text1} ref={fixRef}>
             I'm Aditya Shah — a business-minded tech enthusiast currently
@@ -238,7 +202,39 @@ export default function Home() {
           </div>
         </div>
 
-        <div>Featured Projects</div>
+        {/* Example: Featured Projects with different styling */}
+        <AnimatedTextWithUnderline
+          className={styles.featuredHeader}
+          underlineColor="#1a1a1a"
+          underlineHeight={4}
+          direction="left"
+          // animationDelay={0.2}
+          triggerStart="top 85%"
+        >
+          Featured Projects
+        </AnimatedTextWithUnderline>
+
+        {/* Example: Skills section */}
+        {/* <AnimatedTextWithUnderline
+          className={styles.skillsHeader}
+          underlineColor="linear-gradient(90deg, #38a169, #4299e1)"
+          underlineHeight={3}
+          direction="right"
+          animationDelay={0.1}
+        >
+          Skills & Technologies
+        </AnimatedTextWithUnderline> */}
+
+        {/* Example: Contact section */}
+        {/* <AnimatedTextWithUnderline
+          className={styles.contactHeader}
+          underlineColor="linear-gradient(90deg, #805ad5, #d53f8c)"
+          underlineHeight={6}
+          direction="left"
+          triggerStart="top 95%"
+        >
+          Let's Connect
+        </AnimatedTextWithUnderline> */}
       </div>
     </>
   );

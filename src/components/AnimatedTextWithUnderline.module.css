@@ -1,0 +1,17 @@
+/* Create this file: src/components/AnimatedTextWithUnderline.module.css */
+
+.animatedText {
+  position: relative;
+  display: inline-block;
+  opacity: 0; /* Will be animated by GSAP */
+}
+
+.underline {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  border-radius: 2px;
+  opacity: 0.8;
+  transform: scaleX(0); /* Will be animated by GSAP */
+}
