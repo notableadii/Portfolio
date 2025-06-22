@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import MultilingualLoader from "../components/MultilingualLoader";
 import AnimatedTextWithUnderline from "../components/AnimatedTextWithUnderline";
+import ProjectCard from "../components/ProjectCard";
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -17,6 +18,7 @@ export default function Home() {
   const destextRef = useRef<HTMLDivElement>(null);
   const fixRef = useRef<HTMLDivElement>(null);
   const text2Ref = useRef<HTMLDivElement>(null);
+  const projectCardRef = useRef<HTMLDivElement>(null);
 
   function handleLoadingComplete() {
     setIsLoading(false);
@@ -132,6 +134,31 @@ export default function Home() {
         );
       }
 
+      // Animation for project card
+      if (projectCardRef.current) {
+        const cardTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: projectCardRef.current,
+            start: "top 90%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        cardTl.fromTo(
+          projectCardRef.current,
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "expo.out",
+            delay: 0.1,
+          }
+        );
+      }
+
       // Refresh ScrollTrigger to recalculate positions
       ScrollTrigger.refresh();
     }, 100);
@@ -155,6 +182,12 @@ export default function Home() {
         gsap.getProperty(text2Ref.current, "opacity") === 0
       ) {
         gsap.set(text2Ref.current, { opacity: 1 });
+      }
+      if (
+        projectCardRef.current &&
+        gsap.getProperty(projectCardRef.current, "opacity") === 0
+      ) {
+        gsap.set(projectCardRef.current, { opacity: 1 });
       }
     }, 2000);
 
@@ -202,17 +235,32 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Example: Featured Projects with different styling */}
+        {/* Featured Projects section */}
         <AnimatedTextWithUnderline
           className={styles.featuredHeader}
           underlineColor="#1a1a1a"
           underlineHeight={4}
           direction="left"
-          // animationDelay={0.2}
           triggerStart="top 85%"
         >
           Featured Projects
         </AnimatedTextWithUnderline>
+
+        {/* Project Card */}
+        <div
+          ref={projectCardRef}
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginBottom: "4em",
+          }}
+        >
+          <ProjectCard
+            imageSrc="/project1.png"
+            imageAlt="Personal Portfolio Screenshot"
+            title="Personal Portfolio"
+          />
+        </div>
 
         {/* Example: Skills section */}
         {/* <AnimatedTextWithUnderline
