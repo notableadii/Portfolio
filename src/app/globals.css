@@ -212,3 +212,21 @@ html.lenis {
     font-size: clamp(1.5rem, 8vw, 2.5rem);
   }
 }
+
+/* Line masking for the reveal effect */
+.line,
+.line-subtext {
+  overflow: hidden;
+  display: block;
+}
+
+/* Optional: Add some spacing between lines for better visual effect */
+.line {
+  line-height: 1.1;
+  margin-bottom: 0.1em;
+}
+
+.line-subtext {
+  line-height: 1.4;
+  margin-bottom: 0.05em;
+}

@@ -75,21 +75,3 @@
 .split * {
   will-change: transform;
 }
-
-/* Line masking for the reveal effect */
-:global(.line),
-:global(.line-subtext) {
-  overflow: hidden;
-  display: block;
-}
-
-/* Optional: Add some spacing between lines for better visual effect */
-:global(.line) {
-  line-height: 1.1;
-  margin-bottom: 0.1em;
-}
-
-:global(.line-subtext) {
-  line-height: 1.4;
-  margin-bottom: 0.05em;
-}
