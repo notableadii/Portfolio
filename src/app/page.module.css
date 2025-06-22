@@ -26,9 +26,8 @@
   margin-top: 8em;
   font-size: 3em;
 }
-
-.aboutheader::after {
-  /* bottom: 8px; */
+.aboutheader :global(div[class*="underline"]) {
+  bottom: 8px !important;
 }
 
 /* New header styles for different sections */

@@ -3,6 +3,7 @@
 .animatedText {
   position: relative;
   display: inline-block;
+  /* bottom: 8px; */
   opacity: 0; /* Will be animated by GSAP */
 }
 
